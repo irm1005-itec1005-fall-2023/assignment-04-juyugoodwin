@@ -37,11 +37,51 @@
     - Have you set a favicon? (included - but it's a rocket)
     - Has a team member conducted a code review and left a GitHub Issue in your repo?
     - Have you conducted a code review and left a GitHub Issue on your team member's repo?
+    
+    Bibliography:
+
+    Background Image: http://127.0.0.1:3002/index.html?item=hi
+    Santa Logo: https://www.logolynx.com/images/logolynx/95/95db41aa87a4248e2795c7f6a2058e12.png
+    Plad Image: http://127.0.0.1:3002/index.html?item=hi
+    Wallpaper: https://th.bing.com/th/id/R.7cf08c27c42ff34df5d295f5403fb1c8?rik=A3iC8lL5Zcoyxg&pid=ImgRaw&r=0
+    Referenced for Css mobile to desktop: https://www.w3schools.com/html/html_responsive.asp
+    
 
   -->
-
+    <img class="santa-logo" src="https://www.logolynx.com/images/logolynx/95/95db41aa87a4248e2795c7f6a2058e12.png" alt="Santa logo">
+  
   <main>
-    <div id="app"></div>
+    <div id="app">
+
+      <div class="christmas-flex-box">
+
+        <h1>Christmas Shopping List</h1>
+
+        <div class="list-item-container">
+          <div class="item-1">
+                <form class="add-item">
+                  <label for="item-name">Add to your list:</label>
+                  <input
+                    type="text"
+                    name="item"
+                    id="item-name"
+                    placeholder="Enter item name here.."
+                      required
+                    />
+                  <input type="submit" value="+" />
+                </form>
+            </div>
+
+          <div class="item-2">
+               <ul class="christmas-items">
+                <li>Loading list items...</li>
+              </ul>
+            </div>
+        </div>
+
+      </div>
+
+    </div>
   </main>
 
   <!-- Add JavaScript File -->
