@@ -52,11 +52,16 @@ function inititialise() {
 function addChristmasItem(event) {
   event.preventDefault();
   const itemName = christName.value;
+  
   christmas.push(itemName);
   console.log(itemName);
   renderList();
   christForm.reset();
 }
+// Added things here
+// function toggleCheck(item) {
+  // item.classList.toggle("checked");
+// }
 
 function deleteChristmasItem(i) {
   christmas.splice(i, 1);

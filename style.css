@@ -43,8 +43,24 @@ body {
   flex-direction: column;
 }
 
-p {
-  
+@media screen and (min-width: 800px) {
+  p {
+  color: rgb(99, 99, 99);
+  font-size: small;
+  font-weight: 100;
+  margin-top: 100px;
+  padding: 5px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  p {
+  color: rgb(99, 99, 99);
+  font-size: small;
+  font-weight: 100;
+  margin-top: 150px;
+  padding: 5px;
+  }
 }
 
 @media screen and (min-width: 800px) {
@@ -137,7 +153,7 @@ p {
   .list-item-container {
   background-color: white;
   color: black;
-  min-height: 200px;
+  min-height: 250px;
 
   border-bottom-left-radius: 2.5rem;
   border-bottom-right-radius: 2.5rem;
@@ -211,6 +227,7 @@ ul.christmas-items li:nth-child(odd).checked {
   text-decoration: line-through;
   color: red;
 }
+/* ISSUE HERE */
 
 @media screen and (max-width:800px) {
   ul.christmas-items li.checked::before {
@@ -328,6 +345,7 @@ ul.christmas-items li button:hover {
 
 ul.christmas-items li:hover {
   cursor: pointer;
+  font-size: large;
 }
 
 ul.christmas-items li.checked button {
