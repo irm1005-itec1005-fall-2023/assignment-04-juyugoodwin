@@ -8,6 +8,16 @@
 // Variables
 //
 
+var list = document.querySelector("ul");
+list.addEventListener("click", function(event) {
+  if (event.target.tagName === "LI") {
+    event.target.classList.toggle("checked");
+  }
+})
+
+let deletedChristmasItems = 0;
+let amountOfDeleted = document.querySelector("#number-deleted-items")
+
 // Constants
 const appID = 'app';
 
@@ -16,6 +26,7 @@ const christmas = [];
 const christList = document.querySelector('.christmas-items');
 const christForm = document.querySelector('.add-item');
 const christName = document.querySelector('#item-name');
+
 
 // DOM Elements
 const appContainer = document.getElementById(appID);
@@ -33,9 +44,6 @@ function inititialise() {
   }
 
   // Create an h1 and add it to our app
-  const h1 = document.createElement('h1');
-  h1.innerText = headingText;
-  appContainer.appendChild(h1);
 
   // Init complete
   console.log('App successfully initialised');
@@ -44,19 +52,21 @@ function inititialise() {
 function addChristmasItem(event) {
   event.preventDefault();
   const itemName = christName.value;
-  items.push(itemName);
+  christmas.push(itemName);
+  console.log(itemName);
   renderList();
   christForm.reset();
 }
 
-function deleteChristmasItem(listItem, i) {
+function deleteChristmasItem(i) {
   christmas.splice(i, 1);
+  deletedChristmasItems ++;
   renderList();
 }
 
 function renderList() {
   while (christList.firstChild) {
-    christList.removeChild(itemList.firstChild);
+    christList.removeChild(christList.firstChild);
   }
 
   for (let i = 0; i < christmas.length; i++) {
@@ -64,9 +74,9 @@ function renderList() {
     listItem.textContent = christmas[i];
 
     const deleteButton = document.createElement('button');
-    deleteButton.textContent = 'Delete';
+    deleteButton.textContent = 'x';
     deleteButton.addEventListener('click', () => {
-      deleteChristmasItem(listItem, i);
+      deleteChristmasItem(i);
     });
 
     listItem.appendChild(deleteButton);
@@ -74,6 +84,8 @@ function renderList() {
     if (i === christmas.length - 1) {
       listItem.classList.add('new-item-annimate');
     }
+
+    amountOfDeleted.textContent = ("Amount of deleted items: "+ deletedChristmasItems);
 
     christList.appendChild(listItem);
   }

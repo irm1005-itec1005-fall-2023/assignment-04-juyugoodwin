@@ -24,6 +24,8 @@
   --body-background-colour: var(--colour-peppermint);
 }
 
+/* counters. */
+
 /*
   PAGE / BODY
 */
@@ -32,7 +34,8 @@ body {
   color: white;
   background-color: white;
   background: url(https://i.pinimg.com/originals/f0/ec/78/f0ec78edc58fc4d21d2cc611ea0fde7c.jpg) center no-repeat;
-  background-size: cover;  
+  background-size: cover; 
+  min-height: 100vh; 
   
   display: flex;
   justify-content: center;
@@ -40,15 +43,18 @@ body {
   flex-direction: column;
 }
 
+p {
+  
+}
+
 @media screen and (min-width: 800px) {
   main {
-    background-color: rgb(185, 45, 45);
-    height: 300px;
-    width: 500px;
-    border-radius: 3rem;
-    padding: 0.5rem;
-    margin-bottom: 180px;
-    box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.1);;  
+  background-color: rgb(185, 45, 45);
+  border-radius: 3rem;
+  padding: 0.5rem;
+  margin-bottom: 180px;
+  box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.1);;  
+  width: 500px;
   }
 }
 
@@ -64,7 +70,7 @@ body {
 }
 
 @media screen and (min-width: 800px) {
-.santa-logo {
+  .santa-logo {
   height: 15rem;
   margin: auto;
   padding: 1rem;
@@ -100,7 +106,7 @@ body {
   font-size: 1.5rem;
   font-family: fantasy;
   font-weight: 10;
-  
+
   border-top-left-radius: 3rem;
   border-top-right-radius: 3rem;
   background: url(https://th.bing.com/th/id/OIP.375TOmetq1JysI2OPkXpnQHaHa?rs=1&pid=ImgDetMain);
@@ -115,7 +121,6 @@ body {
   flex-direction: column;
   gap: 0.5rem;
   justify-content: center;
-  height: 282px;
   }
 }
 
@@ -129,10 +134,10 @@ body {
 }
 
 @media screen and (min-width: 800px) {
-.list-item-container {
+  .list-item-container {
   background-color: white;
   color: black;
-  height: 300px;
+  min-height: 200px;
 
   border-bottom-left-radius: 2.5rem;
   border-bottom-right-radius: 2.5rem;
@@ -144,7 +149,7 @@ body {
   .list-item-container {
     background-color: white;
     color: black;
-    height: 300px;
+    min-height: 300px;
 
     border-bottom-left-radius: 3rem;
     border-bottom-right-radius: 3rem;
@@ -152,8 +157,9 @@ body {
     }
   }
 
-/* Form */
-
+/* 
+  FORM
+*/
 .add-item {
   display: grid;
   grid-template-columns: 3fr 1fr;
@@ -190,21 +196,142 @@ input[type="submit"] {
 
 input[type="submit"]:hover {
   background-color: rgb(146, 37, 37);
+  color: black;
 }
 
-/* List Items */
+/* 
+  LIST ITEMS
+*/
+ul.christmas-items li.checked {
+  text-decoration: line-through;
+  color: red;
+}
+
+ul.christmas-items li:nth-child(odd).checked {
+  text-decoration: line-through;
+  color: red;
+}
+
+@media screen and (max-width:800px) {
+  ul.christmas-items li.checked::before {
+  content: '';
+  position: absolute;
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  height: 15px;
+  width: 7px;
+  margin-left: 145px;
+  }
+}
+
+@media screen and (min-width:800px) {
+  ul.christmas-items li.checked::before {
+  content: '';
+  position: absolute;
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  height: 15px;
+  width: 7px;
+  margin-left: 340px;
+  }
+}
 
 ul.christmas-items li {
-  background: url(https://th.bing.com/th/id/OIP.CLzkH2hHAxZFydgYsMd1JwHaEo?rs=1&pid=ImgDetMain) ;
+  background: url(https://th.bing.com/th/id/OIP.CLzkH2hHAxZFydgYsMd1JwHaEo?rs=1&pid=ImgDetMain);
   border-radius: 0.5rem;
   list-style: decimal;
-  padding: 15px;
   font-weight: bold;
-  margin: 15px;
+  padding: 5px;
+  padding-left: 15px;
+  margin: 5px;
+  word-break: break-word;
 }
 
 ul.christmas-items li:nth-child(odd) {
   background: #f9f9f9;
+  border-radius: 0.5rem;
+  list-style: decimal;
+  font-weight: bold;
+  padding: 5px;
+  padding-left: 15px;
+  margin: 5px;
+  word-break: break-word;
+}
+
+ul.christmas-items li:nth-child(odd) button {
+  border: none;
+  text-decoration: none;
+  color: rgb(99, 99, 99);
+  background-color: #f9f9f9;
+  cursor: pointer;
+  font-size: small;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-left: 160px;
+  margin-top: -23px;
+  display:  block;
+  position: absolute;
+}
+
+@media screen and (max-width:800px) {
+ul.christmas-items li button {
+  background: #ececec;
+  border: none;
+  text-decoration: none;
+  color: rgb(99, 99, 99);
+  cursor: pointer;
+  font-size: small;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-left: 160px;
+  margin-top: -23px;
+  display:  block;
+  position: absolute;
+  }
+}
+
+@media screen and (min-width:800px) {
+  ul.christmas-items li button {
+    background: #edebeb;
+    border: none;
+    text-decoration: none;
+    color: rgb(99, 99, 99);
+    cursor: pointer;
+    font-size: small;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 360px;
+    margin-top: -23px;
+    display:  block;
+    position: absolute;
+    }
+  }
+
+  @media screen and (min-width:800px) {
+    ul.christmas-items li:nth-child(odd) button {
+      background: #f9f9f9;
+      border: none;
+      text-decoration: none;
+      color: rgb(99, 99, 99);
+      cursor: pointer;
+      font-size: small;
+      font-family: Arial, Helvetica, sans-serif;
+      margin-left: 360px;
+      margin-top: -23px;
+      display:  block;
+      position: absolute;
+    }
+  }
+
+ul.christmas-items li button:hover {
+  font-size: 12px;
+}
+
+ul.christmas-items li:hover {
+  cursor: pointer;
+}
+
+ul.christmas-items li.checked button {
+  background-color: white;
 }
 
 /*
