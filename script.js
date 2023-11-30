@@ -1,43 +1,77 @@
 /* Assignment 04: Finishing a Todo List App
  *
- * 
+ *
  *
  */
 
-
-//
 // Variables
-//
+const inputBox = document.getElementById("item-name");
+const form = document.getElementById("form-results");
+const deletedCounter = document.createElement("p");
+let deletedCount = parseInt(localStorage.getItem("deletedCount")) || 0; // initialize the completed count
+let completedCount = parseInt(localStorage.getItem("completedCount")) || 0; // initialize the completed count
 
-// Constants
-const appID = "app";
-const headingText = "To do. To done. ✅";
-
-// DOM Elements
-let appContainer = document.getElementById(appID);
-
-//
 // Functions
-//
-
-// Add a heading to the app container
-function inititialise() {
-  // If anything is wrong with the app container then end
-  if (!appContainer) {
-    console.error("Error: Could not find app contianer");
-    return;
+function addTask (){
+  if(inputBox.value === ''){
+    alert("You must write something");
   }
+  else{
+    let li = document.createElement("li");
+    li.innerHTML = inputBox.value;
+    form.appendChild(li);
+    
+    let tempButton = document.createElement("button");
+    tempButton.textContent = "x";
+    li.appendChild(tempButton);
 
-  // Create an h1 and add it to our app
-  const h1 = document.createElement("h1");
-  h1.innerText = headingText;
-  appContainer.appendChild(h1);
-
-  // Init complete
-  console.log("App successfully initialised");
+    li.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
+  }
+  inputBox.value = "";
+  saveData();
 }
 
-//
-// Inits & Event Listeners
-//
-inititialise();
+// Check mark
+form.addEventListener("click", function(e){
+  if(e.target.tagName === "LI"){
+    e.target.classList.toggle("checked");
+    if (e.target.classList.contains("checked")) {
+      completedCount++; // increment the completed count
+    } else {
+      completedCount--; // decrement the completed count
+    }
+    saveData();
+  }
+  else if(e.target.tagName === "BUTTON"){
+    e.target.parentElement.remove();
+    deletedCount++;
+    saveData();
+  }
+}, false);
+
+// Update the completed count when an item is unchecked
+form.addEventListener("transitionend", function(e) {
+  if (e.target.tagName === "LI" && !e.target.classList.contains("checked")) {
+    completedCount--; // decrement the completed count
+    saveData();
+  }
+});
+
+// Update the completed count every second
+setInterval(function() {
+  document.getElementById("completed-count").innerHTML = `Total Completed items: ${completedCount}`;
+}, 500);
+
+setInterval(function() {
+  document.getElementById("deleted-count").innerHTML = `Total Deleted items: ${deletedCount}`;
+}, 500);
+
+function saveData(){
+  localStorage.setItem("data", form.innerHTML);
+  localStorage.setItem("completedCount", completedCount);
+  localStorage.setItem("deletedCount", deletedCount);
+}
+function showData(){
+  form.innerHTML = localStorage.getItem("data");
+}
+showData();
